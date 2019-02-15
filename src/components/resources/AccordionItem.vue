@@ -7,7 +7,7 @@
       <font-awesome-icon :icon="icon" />
       {{ item.name }}
     </button>
-    <div :class="{'Accordion_item--panel Accordion_item--panel-active':active, 'Accordion_item--panel Accordion_item--panel-pasive':!active}">
+    <div :class="activeClass">
       <p>
         {{ item.description }}
       </p>
@@ -38,6 +38,13 @@ export default {
   computed: {
     icon() {
       return this.active ? 'angle-down' : 'angle-right';
+    },
+
+    activeClass() {
+      return {
+        'Accordion_item--panel Accordion_item--panel-active': this.active,
+        'Accordion_item--panel Accordion_item--panel-pasive': !this.active,
+      };
     },
   },
 
