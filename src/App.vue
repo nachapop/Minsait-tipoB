@@ -5,14 +5,14 @@
 </template>
 
 <script>
-import Main from './components/Main.vue';
+import Main from "./components/Main.vue"
 
 export default {
-  name: 'app',
+  name: "app",
   components: {
-    'ms-main': Main,
-  },
-};
+    "ms-main": Main
+  }
+}
 </script>
 
 <style lang="scss" scoped>

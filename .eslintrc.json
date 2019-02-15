@@ -1,15 +1,27 @@
 {
   "env": {
     "browser": true,
-    "es6": true,
     "node": true
   },
   "parserOptions": {
     "parser": "babel-eslint"
   },
-  "extends": [
-    "airbnb-base",
-    "plugin:vue/recommended"
-  ],
-  "rules": {}
+  "extends": ["plugin:vue/essential", "eslint:recommended"],
+  "rules": {
+    "vue/component-name-in-template-casing": [
+      "error",
+      "kebab-case",
+      {
+        "ignores": []
+      }
+    ],
+    "vue/html-closing-bracket-newline": [
+      "error",
+      { "singleline": "never", "multiline": "never" }
+    ],
+    "semi-spacing": ["error", { "before": false, "after": true }],
+    "vue/no-v-html": "off",
+    "no-console": "off",
+    "semi": [2, "never"]
+  }
 }

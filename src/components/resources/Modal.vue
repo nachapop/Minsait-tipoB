@@ -1,13 +1,11 @@
 <template>
   <div
     ref="myModal"
-    class="Modal"
-  >
+    class="Modal">
     <div class="Modal--content">
       <span
         class="Modal--content-close"
-        @click="onClose"
-      >&times;</span>
+        @click="onClose">&times;</span>
       <div>
         <h3 class="Modal--content-title">
           {{ item.name }}
@@ -23,16 +21,14 @@
             <h4>Food pairing:</h4>
             <ul
               v-for="(content, index) in item.food_pairing"
-              :key="index"
-            >
+              :key="index">
               <li>{{ content }}</li>
             </ul>
           </div>
           <div class="Modal--content-column">
             <img
               :src="item.image_url"
-              class="Modal--content-image"
-            >
+              class="Modal--content-image">
           </div>
         </div>
       </div>
@@ -45,39 +41,38 @@ export default {
   props: {
     item: {
       type: Object,
-      default: () => {},
-    },
+      default: () => {}
+    }
   },
 
   methods: {
     onClose() {
-      this.$refs.myModal.style.display = 'none';
-    },
-  },
-};
+      this.$refs.myModal.style.display = "none"
+    }
+  }
+}
 </script>
 
 
 <style lang="scss" scoped>
-/* The Modal (background) */
 .Modal {
   width: 500px;
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  display: none;
+  position: fixed;
+  z-index: 1;
   left: 0;
   top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0, 0, 0); /* Fallback color */
-  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
   &--content {
     background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
+    margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 500px; /* Could be more or less, depending on screen size */
+    width: 500px;
     &-close {
       color: #aaa;
       float: right;

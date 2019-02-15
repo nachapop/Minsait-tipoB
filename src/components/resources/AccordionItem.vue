@@ -2,8 +2,7 @@
   <div class="Accordion_item">
     <button
       class="Accordion_item--btn-list"
-      @click="active = !active"
-    >
+      @click="active = !active">
       <font-awesome-icon :icon="icon" />
       {{ item.name }}
     </button>
@@ -13,8 +12,7 @@
       </p>
       <button
         class="Accordion_item--btn-modal"
-        @click="onModal(item)"
-      >
+        @click="onModal(item)">
         Ver más
       </button>
     </div>
@@ -26,34 +24,35 @@ export default {
   props: {
     item: {
       type: Object,
-      default: () => {},
-    },
+      default: () => {}
+    }
   },
+
   data() {
     return {
-      active: false,
-    };
+      active: false
+    }
   },
 
   computed: {
     icon() {
-      return this.active ? 'angle-down' : 'angle-right';
+      return this.active ? "angle-down" : "angle-right"
     },
 
     activeClass() {
       return {
-        'Accordion_item--panel Accordion_item--panel-active': this.active,
-        'Accordion_item--panel Accordion_item--panel-pasive': !this.active,
-      };
-    },
+        "Accordion_item--panel Accordion_item--panel-active": this.active,
+        "Accordion_item--panel Accordion_item--panel-pasive": !this.active
+      }
+    }
   },
 
   methods: {
     onModal(item) {
-      this.$emit('openModal', item);
-    },
-  },
-};
+      this.$emit("openModal", item)
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>
