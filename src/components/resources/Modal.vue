@@ -1,7 +1,8 @@
 <template>
   <div
     ref="myModal"
-    class="Modal">
+    class="Modal"
+    @click="onCloseModal">
     <div class="Modal--content">
       <span
         class="Modal--content-close"
@@ -24,6 +25,16 @@
               :key="index">
               <li>{{ content }}</li>
             </ul>
+            <div class="Modal--content-btn-container">
+              <button
+                class="Modal--content-btn-current"
+                @click="$emit('currentIndex',index-1)">
+                <font-awesome-icon icon="caret-left" /></button>
+              <button
+                class="Modal--content-btn-current"
+                @click="$emit('currentIndex',index+1)">
+                <font-awesome-icon icon="caret-right" /> </button>
+            </div>
           </div>
           <div class="Modal--content-column">
             <img
@@ -42,21 +53,29 @@ export default {
     item: {
       type: Object,
       default: () => {}
+    },
+    index: {
+      type: Number,
+      default: -1
     }
   },
 
   methods: {
     onClose() {
       this.$refs.myModal.style.display = "none"
+    },
+
+    onCloseModal(event) {
+      if (event.target === this.$refs.myModal) {
+        this.$refs.myModal.style.display = "none"
+      }
     }
   }
 }
 </script>
 
-
 <style lang="scss" scoped>
 .Modal {
-  width: 500px;
   display: none;
   position: fixed;
   z-index: 1;
@@ -64,15 +83,20 @@ export default {
   top: 0;
   width: 100%;
   height: 100%;
-  overflow: auto;
   background-color: rgb(0, 0, 0);
   background-color: rgba(0, 0, 0, 0.4);
+  @media (max-height: 700px) {
+    overflow: auto;
+  }
   &--content {
     background-color: #fefefe;
-    margin: 15% auto;
+    margin: 5% auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 500px;
+    width: 600px;
+    @media (max-width: 640px) {
+      width: 90%;
+    }
     &-close {
       color: #aaa;
       float: right;
@@ -93,7 +117,6 @@ export default {
       font-stretch: normal;
       line-height: 1.46;
       letter-spacing: normal;
-      color: var(--metallic-blue);
     }
     &-div {
       display: flex;
@@ -104,9 +127,20 @@ export default {
     &-description {
       line-height: 1.43;
     }
+    &-btn-container {
+      text-align: center;
+    }
+    &-btn-current {
+      margin: 0 5px;
+      border-radius: 10%;
+      font-size: 26px;
+      width: 35px;
+    }
+
     &-image {
-      width: 70%;
+      width: 60%;
       height: auto;
+      max-height: 600px;
       object-fit: cover;
       display: block;
       margin: 0 auto;

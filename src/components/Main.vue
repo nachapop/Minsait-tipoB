@@ -12,7 +12,9 @@
     </div>
     <ms-modal
       ref="modal"
-      :item="current"/>
+      :index="currentIndex"
+      :item="current"
+      @currentIndex="onChangeIndex"/>
   </section>
 </template>
 
@@ -31,7 +33,8 @@ export default {
     return {
       title: "Beer list",
       data: [],
-      current: {}
+      current: {},
+      currentIndex: -1
     }
   },
 
@@ -45,6 +48,20 @@ export default {
     onModal(item) {
       this.$refs.modal.$refs.myModal.style.display = "block"
       this.current = item
+      this.currentIndex = this.data.findIndex(
+        d => d.name === this.current.name
+      )
+    },
+
+    onChangeIndex(index) {
+      if (index < 0) {
+        this.currentIndex = this.data.length - 1
+      } else if (index >= this.data.length) {
+        this.currentIndex = 0
+      } else {
+        this.currentIndex = index
+      }
+      this.current = this.data[this.currentIndex]
     }
   }
 }
