@@ -54,6 +54,7 @@ export default {
       type: Object,
       default: () => {}
     },
+    
     index: {
       type: Number,
       default: -1
