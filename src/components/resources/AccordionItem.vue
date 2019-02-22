@@ -1,17 +1,19 @@
 <template>
-  <div class="Accordion_item">
+  <div class="Accordion-item">
     <button
-      class="Accordion_item--btn-list"
+      class="Accordion-item__btn-list"
       @click="active = !active">
-      <font-awesome-icon :icon="icon" />
+      <font-awesome-icon
+        :icon="icon"
+        class="Accordion-item__icon"/>
       {{ item.name }}
     </button>
     <div :class="activeClass">
-      <p>
+      <p class="Accordion-item__description">
         {{ item.description }}
       </p>
       <button
-        class="Accordion_item--btn-modal"
+        class="Accordion-item__btn-modal"
         @click="onModal(item)">
         Ver más
       </button>
@@ -41,8 +43,8 @@ export default {
 
     activeClass() {
       return {
-        "Accordion_item--panel Accordion_item--panel-active": this.active,
-        "Accordion_item--panel Accordion_item--panel-pasive": !this.active
+        "Accordion-item__panel Accordion-item__panel--active": this.active,
+        "Accordion-item__panel Accordion-item__panel--pasive": !this.active
       }
     }
   },
@@ -56,14 +58,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.Accordion_item {
-  width: 60%;
+@import "../../styles/global.scss";
+.Accordion-item {
   border-bottom: 2px solid #ddd;
-  &--btn-list {
+  &__btn-list {
     border: none;
-    color: #444;
+    color: $--metallic-blue;
     cursor: pointer;
-    font-family: Roboto;
+    font-family: $--font-family;
     font-size: 16px;
     font-weight: bold;
     line-height: 1.5;
@@ -76,27 +78,45 @@ export default {
       background-color: #ccc;
     }
   }
-  &--panel {
+  &__icon {
+    color: $--dark-sky-blue;
+    height: 12px;
+    object-fit: contain;
+    width: 7.4px;
+  }
+  &__description {
+    color: $--dark-blue-grey;
+    font-family: $--font-family;
+    font-size: 14px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.43;
+    letter-spacing: normal;
+    padding-right: 18px;
+  }
+  &__panel {
+    overflow: hidden;
     padding: 0 18px;
     width: 100%;
-    background-color: white;
-    overflow: hidden;
-    &-pasive {
+    &--pasive {
       display: none;
     }
-    &-active {
+    &--active {
       display: block;
     }
   }
-  &--btn-modal {
-    font-size: 14px;
+  &__btn-modal {
     border: 0;
-    cursor: pointer;
     background: none;
     box-shadow: none;
     border-radius: none;
-    color: #8cbed6;
+    color: $--dark-sky-blue;
+    cursor: pointer;
+    font-size: 14px;
+    margin-bottom: 20px;
     outline: none;
+    padding: 0;
   }
 }
 </style>

@@ -1,19 +1,22 @@
 <template>
-  <section>
-    <h1 class="h1__title">
+  <section class="section">
+    <h3 class="section--title">
       {{ title }}
-    </h1>
-    <div
-      v-for="(item, index) in data"
-      :key="index">
-      <ms-accordion-item
-        :item="item"
-        @openModal="onModal"/>
+    </h3>
+    <div class="section--Accordion">
+      <div
+        v-for="(item, index) in data"
+        :key="index">
+        <ms-accordion-item
+          :item="item"
+          @openModal="onModal"/>
+      </div>
     </div>
     <ms-modal
-      ref="modal"
       :index="currentIndex"
       :item="current"
+      :visible="modalVisible"
+      @showModal="modalVisible=false"
       @currentIndex="onChangeIndex"/>
   </section>
 </template>
@@ -34,7 +37,8 @@ export default {
       title: "Beer list",
       data: [],
       current: {},
-      currentIndex: -1
+      currentIndex: -1,
+      modalVisible: false
     }
   },
 
@@ -46,7 +50,7 @@ export default {
 
   methods: {
     onModal(item) {
-      this.$refs.modal.$refs.myModal.style.display = "block"
+      this.modalVisible = true
       this.current = item
       this.currentIndex = this.data.findIndex(
         d => d.name === this.current.name
@@ -61,6 +65,7 @@ export default {
       } else {
         this.currentIndex = index
       }
+
       this.current = this.data[this.currentIndex]
     }
   }
@@ -68,11 +73,23 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.h1__title {
-  font-size: 64px;
-  font-weight: 300;
-  line-height: 1.06;
-  letter-spacing: normal;
-  color: #2f4f4f;
+@import "../styles/global.scss";
+
+.section {
+  padding: 45px 49px;
+  width: 568px;
+  height: 608px;
+  overflow-y: scroll;
+  box-shadow: 4px 4px 4px 0 rgba(223, 223, 223, 0.5);
+  &--title {
+    font-size: 64px;
+    font-weight: 300;
+    margin: 0;
+    line-height: 1.06;
+    color: $--dark-blue-grey;
+  }
+  &--Accordion {
+    margin-top: 45px;
+  }
 }
 </style>

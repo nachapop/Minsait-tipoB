@@ -15,9 +15,9 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+@import "./styles/global.scss";
 #app {
-  font-family: Roboto;
-  padding: 40px;
+  font-family: $--font-family;
 }
 </style>
