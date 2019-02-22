@@ -1,9 +1,9 @@
 <template>
   <section class="section">
-    <h3 class="section--title">
+    <h3 class="section__title">
       {{ title }}
     </h3>
-    <div class="section--Accordion">
+    <div class="section__Accordion">
       <div
         v-for="(item, index) in data"
         :key="index">
@@ -81,14 +81,14 @@ export default {
   height: 608px;
   overflow-y: scroll;
   box-shadow: 4px 4px 4px 0 rgba(223, 223, 223, 0.5);
-  &--title {
+  &__title {
     font-size: 64px;
     font-weight: 300;
     margin: 0;
     line-height: 1.06;
     color: $--dark-blue-grey;
   }
-  &--Accordion {
+  &__Accordion {
     margin-top: 45px;
   }
 }
